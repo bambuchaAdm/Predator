@@ -1,0 +1,8 @@
+include_path=['.','/usr/include/apache2/','/usr/include/apr-1']
+libs=['apr-1', 'uuid', 'rt', 'crypt', 'pthread', 'ldl']
+#defs=['LINUX=2','_REENTRANT','_GNU_SOURCE','_LARGEFILE64_SOURCE'
+defs={'LINUX' : '2','_REENTRANT': None , "_GNU_SOURCE" : None, "_LARGEFILE64_SOURCE": None}
+cflags=['-pthread']
+env=Environment(CPPPATH=include_path,LIBS=libs,CPPDEFINES=defs,CFLAGS=cflags)
+#print env.Dump()
+env.Object('mod_authnz_predator.c')
