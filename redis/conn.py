@@ -1,9 +1,8 @@
 import socket
 
-class ErrorMassage(Exception) :
+class RedisError(Exception) :
 	pass
 
-class 
 
 class RedisConnection :
 	
@@ -26,7 +25,15 @@ class RedisConnection :
 			buf += self.TERM
 		
 		self._sock.send(buf.encode())
+	
+	def _parseSingle(self) :
+		tmp = self._sock.recv(4096).encode()
+		return tmp.ljust(find("\n"))
 			
+	def _parseResponse(self) :
+		first = self._sock.recv(1)
+		if(first == b'+')
+			return self._parseSingle()
 			
 	def __del__(self) :
 		self._sock.close();
