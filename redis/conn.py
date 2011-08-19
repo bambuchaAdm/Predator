@@ -3,10 +3,7 @@ import socket
 class RedisError(Exception) :
 	pass
 
-class NoKeyException(Exception) :
-	pass
-
-def buildMessage(args) :
+def buildMessage(*args) :
 	buf = ['*'+str(len(args))]
 	for x in args  :
 		buf.append( '$'+str(len(str(x))) )
@@ -69,7 +66,7 @@ class RedisConnection :
 		if first == b'$' :
 			return self._parseBulk()
 			
-	def execute(self,args) :
+	def execute(self,*args) :
 		msg = buildMessage(args)
 		print (msg.encode())
 		self._sock.send(msg.encode())
@@ -80,14 +77,14 @@ class RedisConnection :
 		self._sock.close();
 		
 	def get(self,key) :
-		return self.execute(["GET",key])
+		return self.execute("GET",key)
 	
 	def expire(self,key,time) :
-		return self.execute(["EXPIRE",key,time])
+		return self.execute("EXPIRE",key,time)
 	
 	def delete(self,key) :
-		return self.execute(["DEL",key])
+		return self.execute("DEL",key)
 	
 	def set(self,key,value) :
-		return self.execute(["SET",key,value])
+		return self.execute("SET",key,value)
 
