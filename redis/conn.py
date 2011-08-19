@@ -91,7 +91,3 @@ class RedisConnection :
 	def set(self,key,value) :
 		return self.execute(["SET",key,value])
 
-test = RedisConnection()
-print (test.set("a","myvalue"),
-test.expire("a",255))
-test.execute(["dupa"])
