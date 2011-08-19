@@ -1,4 +1,0 @@
-#ifndef APACHE_MOD_PREDATOR
-#define APACHE_MOD_PREDATOR
-
-#endif /* APACHE_MOD_PREDATOR */
